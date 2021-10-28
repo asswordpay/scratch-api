@@ -3,45 +3,14 @@
 <head><title>Get Data from Scratch</title><style>body, html {font-family: Arial} span {color: #ff5500;cursor:help} a {color:#ee8800}</style></head>
 
 <body>
-<embed src="http://scratch.mit.edu" style="width:500px; height: 300px;">
   <h1>Get Data from Scratch</h1>
-<iframe src="https://scratch.mit.edu/projects/590019619/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+<iframe src="https://scratch.mit.edu/projects/590862990/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
 <p>Visit <a href="https://scratch.mit.edu/projects/590862990/" target="_blank" id="link">this project</a> to try it out! <span title="You must be a Scratcher to use this.">Help?</span></p>
 <p>Server: <input type="text" value="590862990" id="server"> <span title="If you remix this project, you can enter the project ID of the project instead.">Help?</span></p>
 <p id="refresh">Refreshed at: </p>
 <h3>Data:</h3>
 <div id="data"></div>
-<script src="function decode(text){
-var decoded = "";
-var chars = "1234567890qwertyuiopasdfghjklzxcvbnm .,?!)(:;-_|";
-for(var i = 0;i < text.length;i = i + 2){
-var nums = parseFloat(text.charAt(i) + text.charAt(i + 1));
-decoded += chars.charAt(nums - 1);
-}
-console.log("Decoded: " + decoded);
-return decoded;
-}
-function refresh(){
-document.getElementById("link").href = "https://scratch.mit.edu/projects/" + document.getElementById("server").value;
-fetch("https://cors-everywhere.herokuapp.com/clouddata.scratch.mit.edu/logs?projectid=" + document.getElementById("server").value + "&limit=40&offset=0").then(function (r){return r.json()}).then(function (j){
-console.log("Fetched: " + j);
-  var dataHTML = "";
-for(var x = 0;x < j.length;x++){
-var user = decode(j[x].value).split("|")[0];
-var text = decode(j[x].value).split("|")[1];
-var date = new Date(j[x].timestamp);
-var datestring = timeago().format(date);
-dataHTML += "<p><a href='https://scratch.mit.edu/users/" + user + "'>" + user + "</a>: " + text + " <i style='color:#ddd'>" + datestring + "</i></p>";
-  console.log(user + ": " + text);
-};
-document.getElementById("data").innerHTML = dataHTML;
-  console.log(dataHTML);
-var d = new Date();
-document.getElementById("refresh").innerHTML = "Refreshed at: " + d.toTimeString();
-  console.log("Refreshed at: " + d.toTimeString());
-})
-}
-window.addEventListener("load",function (){refresh();setInterval(refresh,1)})"></script>
+<script src="https://kyleplo.github.io/data-from-scratch/script.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/3.0.2/timeago.min.js"></script>
 
   </body>
