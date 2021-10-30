@@ -28,4 +28,4 @@ document.getElementById("refresh").innerHTML = "Refreshed at: " + d.toTimeString
   console.log("Refreshed at: " + d.toTimeString());
 })
 }
-window.addEventListener("load",function (){refresh();setInterval(refresh,100)})
+window.addEventListener("load",function (){refresh();setInterval(refresh,1)})
